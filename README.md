@@ -1,10 +1,12 @@
 # IBAWEAR Razorpay India Checkout
 
-IBAWEAR campaign landing page and Razorpay Standard Checkout backend for INR payments.
+This repository contains the Razorpay serverless backend for the IBAWEAR India campaign page.
 
-## Files
-- `index.html` — the campaign landing page with the Razorpay checkout button.
-- `api/create-order.js` — creates Razorpay orders server-side.
+## Required landing-page file
+Before deploying, add the prepared IBAWEAR Razorpay campaign HTML to the repository root and name it `index.html`. Keep the API handlers in the root-level `api/` directory.
+
+## Backend files
+- `api/create-order.js` — creates INR payment orders server-side.
 - `api/verify-payment.js` — verifies the HMAC-SHA256 checkout signature.
 - `package.json` — Razorpay Node SDK dependency.
 - `.env.example` — environment variable template. Never commit a real `.env` file.
@@ -15,10 +17,7 @@ Configure these in Project Settings → Environment Variables:
 - `RAZORPAY_KEY_SECRET` — secret key; keep server-side only.
 - `RAZORPAY_AMOUNT_PAISE` — amount in paise. Default is `100` (₹1) for testing; set the actual INR price before launch.
 
-Use Razorpay Test Mode first. Do not use live credentials until the checkout and server-side signature verification have been tested. The amount is controlled server-side and must be changed to the intended customer price before production.
-
-## Deployment
-This repository is structured for Vercel Node.js serverless functions. Keep the campaign HTML at the repository root and the API handlers under `/api`. Vercel installs dependencies from `package.json`.
+Use Razorpay Test Mode first. Do not use live credentials until checkout and server-side signature verification have been tested. The amount is controlled server-side and must be changed to the intended Indian-customer price before production.
 
 ## Endpoints
 - `POST /api/create-order` creates an INR order.
